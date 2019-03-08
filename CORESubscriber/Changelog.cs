@@ -95,7 +95,10 @@ namespace CORESubscriber
 
                 return;
             }
-
+            // string pathChangeLog = Dataset.GetChangelogPath();
+            // Console.WriteLine($"{pathChangeLog}");
+            var totalTransactions = Dataset.GetNumberOfFilesInChangeLog();
+            Console.WriteLine($"Working on transaction number {Transaction + 1} of {totalTransactions}:");
             Send(SetTransactionValues(transaction));
 
             Transaction++;
@@ -119,9 +122,10 @@ namespace CORESubscriber
 
         private static void Send(XDocument transactionDocument)
         {
+
             using (var client = new HttpClient())
             {
-                client.Timeout = TimeSpan.FromMinutes(5);
+                client.Timeout = TimeSpan.FromMinutes(Config.HttpTimeoutMinutes);
                 var request = new HttpRequestMessage(HttpMethod.Post, Dataset.GetWfsClient());
                 Stream stream = new MemoryStream();
                 transactionDocument.Save(stream);
@@ -138,6 +142,7 @@ namespace CORESubscriber
                         $"Transaction failed. Message from WFS-server: \r\n{responseMessage}");
 
                 WriteTransactionSummaryToConsole(responseMessage);
+
             }
         }
 
@@ -148,6 +153,7 @@ namespace CORESubscriber
 
         private static void WriteTransactionSummaryToConsole(string responseMessage)
         {
+
             Console.WriteLine(XDocument.Parse(responseMessage).Descendants(XmlNamespaces.Wfs + "TransactionSummary").First().ToString());
         }
 

@@ -31,6 +31,7 @@ namespace CORESubscriber
         internal static string DownloadFolder = Path.GetTempPath();
 
         internal static string ErrorLog = "errorLog.txt";
+        internal static int HttpTimeoutMinutes = 5;
 
         internal static int StatusQueryDelay = 300;
 

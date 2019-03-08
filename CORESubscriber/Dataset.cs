@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Xml.Linq;
 using CORESubscriber.Xml;
@@ -119,6 +120,12 @@ namespace CORESubscriber
         {
             return GetDatasetConfigFirstDescendant(XmlElements.AbortedChangelog)
                 .Attribute(XmlAttributes.ChangelogPath).Value;
+        }
+
+        public static int GetNumberOfFilesInChangeLog()
+        {
+            string pathChangeLog = Dataset.GetChangelogPath();
+            return Directory.EnumerateFiles($"{pathChangeLog}", "*.xml", SearchOption.AllDirectories).Count();
         }
 
         public static void SetEndindex(string endIndex)
