@@ -242,6 +242,9 @@ FakesAssemblies/
 **/*.Server/ModelManifest.xml
 _Pvt_Extensions
 
+#VSCode
+.vscode/
+
 # Paket dependency manager
 .paket/paket.exe
 paket-files/

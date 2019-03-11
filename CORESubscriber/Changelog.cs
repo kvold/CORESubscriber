@@ -95,8 +95,7 @@ namespace CORESubscriber
 
                 return;
             }
-            // string pathChangeLog = Dataset.GetChangelogPath();
-            // Console.WriteLine($"{pathChangeLog}");
+
             var totalTransactions = Dataset.GetNumberOfFilesInChangeLog();
             Console.WriteLine($"Working on transaction number {Transaction + 1} of {totalTransactions}:");
             Send(SetTransactionValues(transaction));
