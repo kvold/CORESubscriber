@@ -31,6 +31,8 @@ namespace CORESubscriber.SoapAction
                         Task.Delay(Config.StatusQueryDelay * queryCounter++).Wait();
                         continue;
                     case "finished":
+                        // Give the provider time to make the file available
+                        System.Threading.Thread.Sleep(Config.WaitForProvider);
                         return;
                     default:
                         throw new Exception("Status for changelog with ID " + Dataset.OrderedChangelogId + ": " +
