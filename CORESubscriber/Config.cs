@@ -33,7 +33,7 @@ namespace CORESubscriber
         internal static string ErrorLog = "errorLog.txt";
         internal static int HttpTimeoutMinutes = 5;
 
-        internal static int WaitForProvider = 2000;
+        internal static int WaitForProvider = 20000;
 
         internal static int StatusQueryDelay = 300;
 
