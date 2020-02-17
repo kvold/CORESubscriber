@@ -112,7 +112,7 @@ namespace CORESubscriber
             transaction.SetAttributeValue("version", "2.0.0");
 
             var xTransaction = new XDocument(transaction);
-            string lastTranPath = Path.Combine($"{Config.DownloadFolder}", "lastTransaction.xml");
+            string lastTranPath = Path.Join($"{Config.DownloadFolder}", "lastTransaction.xml");
             System.IO.File.Delete(lastTranPath);
             xTransaction.Save(lastTranPath);
 
@@ -169,12 +169,12 @@ namespace CORESubscriber
 
             SetDataFolder(changelogFileName);
 
-            return Config.DownloadFolder + "/" + changelogFileName;
+            return Path.Join(Config.DownloadFolder, changelogFileName);
         }
 
         public static void SetDataFolder(string changelogFileName)
         {
-            DataFolder = Config.DownloadFolder + "/" + changelogFileName.Split(".")[0];
+            DataFolder = Path.Join(Config.DownloadFolder, changelogFileName.Split(".")[0]);
         }
 
         private static string GetChangelogFileNameFromDownloadUrl(string downloadUrl)
