@@ -112,7 +112,7 @@ namespace CORESubscriber
             transaction.SetAttributeValue("version", "2.0.0");
 
             var xTransaction = new XDocument(transaction);
-            string lastTranPath = Path.Join($"{Config.DownloadFolder}", "lastTransaction.xml");
+            string lastTranPath = Path.Join(Config.DownloadFolder, "lastTransaction.xml");
             System.IO.File.Delete(lastTranPath);
             xTransaction.Save(lastTranPath);
 
