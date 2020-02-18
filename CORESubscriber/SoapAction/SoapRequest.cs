@@ -14,8 +14,7 @@ namespace CORESubscriber.SoapAction
     {
         public static XDocument GetSoapContentByAction(string action)
         {
-            string exeFolder = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName);
-            string queriesFolder = Path.Join(exeFolder, "Queries",  $"{action}.xml");
+            string queriesFolder = Path.Join(AppContext.BaseDirectory, "Queries",  $"{action}.xml");
             var actionText = File.ReadAllText(queriesFolder);
 
             actionText = actionText.Replace(XmlNamespaces.Geosynchronization.NamespaceName,
