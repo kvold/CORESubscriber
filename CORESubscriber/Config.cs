@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using CORESubscriber.Xml;
 
@@ -30,7 +31,7 @@ namespace CORESubscriber
 
         internal static string DownloadFolder = Path.GetTempPath();
 
-        internal static string ErrorLog = "errorLog.txt";
+        internal static string ErrorLog = Path.Join(AppContext.BaseDirectory, "errorLog.txt");
         internal static int HttpTimeoutMinutes = 30;
 
         internal static int WaitForProvider = 20000;
